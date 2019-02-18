@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {Link } from "react-browser-router";
 
 
 
@@ -11,24 +12,19 @@ export default class SearchScreen extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch('http://5c63e54bc969210014a32d76.mockapi.io/api/v1/users').then(promise => promise.json())
-    .then(data => {
-      this.setState({data: data})
-    })
-  }
   render() {
-    console.log(this.state.data);
-    var tableRows = this.state.data.map(user => {
+    console.log(this.props.userData);
+    const tableRows = this.props.userData.map(user => {
       return (
         <tr key={user.id}>
-          <td>{user.id}</td>
-          <td>{user.name}</td>
-          <td>{user.city}</td>
-          <td>{user.country}</td>
+          <td><Link to={"/user/" + user.id}>{user.id}</Link></td>
+          <td><Link to={"/user/" + user.id}>{user.name}</Link></td>
+          <td><Link to={"/user/" + user.id}>{user.city}</Link></td>
+          <td><Link to={"/user/" + user.id}>{user.country}</Link></td>
         </tr>
       )
     })
+
     return (
       <div>
         <table>
