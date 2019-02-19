@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchScreen from './SearchScreen';
 import UserScreen from './UserScreen';
 import PostScreen from './PostScreen';
+import Header from './Header';
 import './App.css';
 import {
     BrowserRouter,
@@ -41,6 +42,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <Route path="/" component={Header}/>
           <Route exact path="/" component={() => <SearchScreen userData={this.state.data} />} />
           <Route exact path="/user/:id" render={(props) => <UserScreen {...props} getUserById={this.getUserById.bind(this)} />} />
           <Route exact path="/user/:userId/post/:postId" render={(props) => <PostScreen {...props} getPostById={this.getPostById.bind(this)} />} />

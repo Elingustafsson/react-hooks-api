@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Link } from "react-browser-router";
+import { Link } from "react-browser-router";
 
 
 
@@ -25,15 +25,18 @@ export default class SearchScreen extends Component {
       )
     })
 
+    //https://stackoverflow.com/questions/44375407/how-to-make-a-table-in-reactjs-sortable
+    //Kunna klicka på <th> och när man gör det så ska vi gå in i userData, sortera den efter vald <th> och rendera om den.
+
     return (
       <div>
         <table>
           <thead>
             <tr>
-              <td>id</td>
-              <td>name</td>
-              <td>city</td>
-              <td>country</td>
+              <th>id</th>
+              <th>name</th>
+              <th>city</th>
+              <th>country</th>
             </tr>
           </thead>
           <tbody>
