@@ -15,9 +15,12 @@ class App extends Component {
     this.state = {
       data: []
     }
-      fetch('http://5c63e54bc969210014a32d76.mockapi.io/api/v1/users').then(promise => promise.json())
+      document.body.classList.add('loading')
+      fetch('http://5c63e54bc969210014a32d76.mockapi.io/api/v1/users')
+      .then(promise => promise.json())
       .then(data => {
         this.setState({data: data})
+        document.body.classList.remove('loading')
       })
   }
 
@@ -32,6 +35,7 @@ class App extends Component {
     console.log("LALA",userInfo.posts.filter(b => b.id == postId));
     return userInfo.posts.filter(b => b.id == postId)[0]
   }
+  //läs mer route https://reacttraining.com/react-router/web/api
 
   render() {
     return (
