@@ -8,8 +8,22 @@ export default class SearchScreen extends Component {
   constructor(props) {
     super()
     this.state = {
-      data: []
+      userData: props.userData
     }
+  }
+
+  sortByColumn(column) {
+    console.log("innan",this.state.userData);
+    this.setState({
+      userData: this.state.userData.sort((a,b) => {
+        if (a[column] > b[column]) {
+          return 1;
+        } else {
+          return -1;
+        }
+      })
+    })
+    console.log("efter",this.state.userData);
   }
 
   render() {
@@ -34,9 +48,9 @@ export default class SearchScreen extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>name</th>
-              <th>city</th>
-              <th>country</th>
+              <th onClick={() => this.sortByColumn("name")}>name</th>
+              <th onClick={() => this.sortByColumn("city")}>city</th>
+              <th onClick={() => this.sortByColumn("country")}>country</th>
             </tr>
           </thead>
           <tbody>
