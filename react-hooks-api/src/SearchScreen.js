@@ -8,26 +8,41 @@ export default class SearchScreen extends Component {
   constructor(props) {
     super()
     this.state = {
-      userData: props.userData
+      userData: props.userData,
+      //Att göra:
+      //mappa om alla id från string till number.
+      latestSorted: undefined
     }
   }
 
+
   sortByColumn(column) {
-    console.log("innan",this.state.userData);
-    this.setState({
-      userData: this.state.userData.sort((a,b) => {
-        if (a[column] > b[column]) {
-          return 1;
-        } else {
-          return -1;
-        }
+    if(this.state.latestSorted === column) {
+      this.setState({
+        latestSorted: undefined,
+        userData: this.state.userData.sort((a,b) => {
+          if (a[column] < b[column]) {
+            return 1;
+          } else {
+            return -1;
+          }
+        })
       })
-    })
-    console.log("efter",this.state.userData);
+    } else {
+      this.setState({
+        latestSorted: column,
+        userData: this.state.userData.sort((a,b) => {
+          if (a[column] > b[column]) {
+            return 1;
+          } else {
+            return -1;
+          }
+        })
+      })
+    }
   }
 
   render() {
-    console.log(this.props.userData);
     const tableRows = this.props.userData.map(user => {
       return (
         <tr key={user.id}>
