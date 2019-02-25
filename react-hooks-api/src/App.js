@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchScreen from './SearchScreen';
 import UserScreen from './UserScreen';
 import PostScreen from './PostScreen';
@@ -9,47 +9,37 @@ import {
     Route
 } from "react-browser-router";
 
-class App extends Component {
 
-  constructor(props){
-    super()
-    this.state = {
-      data: []
-    }
-      document.body.classList.add('loading')
-      fetch('http://5c63e54bc969210014a32d76.mockapi.io/api/v1/users')
-      .then(promise => promise.json())
-      .then(data => {
-        this.setState({data: data})
-        document.body.classList.remove('loading')
-      })
+export default function App() {
+  const [data, setData] = useState([])
+  //Om man vill ha fler saker i "state"
+  // const [dataState, dataStateFunc] = useState({
+  //   data: []
+  // })
+  useEffect(() => {
+    document.body.classList.add('loading')
+    fetch('http://5c63e54bc969210014a32d76.mockapi.io/api/v1/users')
+    .then(promise => promise.json())
+    .then(value => {
+      setData(value)
+      document.body.classList.remove('loading')
+    })
+  }, [])
+
+
+  function getUserById(id) {
+    return data.filter(a => a.id == id)[0];
   }
 
-  getUserById(id) {
-    return this.state.data.filter(a => a.id == id)[0];
-  }
-
-  getPostById(userId, postId) {
-    let userInfo = this.getUserById(userId)
-    console.log(postId);
-    console.log("test",userInfo.posts);
-    console.log("LALA",userInfo.posts.filter(b => b.id == postId));
-    return userInfo.posts.filter(b => b.id == postId)[0]
-  }
-  //läs mer route https://reacttraining.com/react-router/web/api
-
-  render() {
-    return (
-      <BrowserRouter>
-        <div>
-          <Route path="/" component={Header}/>
-          <Route exact path="/" component={() => <SearchScreen userData={this.state.data} />} />
-          <Route exact path="/user/:id" render={(props) => <UserScreen {...props} getUserById={this.getUserById.bind(this)} />} />
-          <Route exact path="/user/:userId/post/:postId" render={(props) => <PostScreen {...props} getPostById={this.getPostById.bind(this)} />} />
-        </div>
-      </BrowserRouter>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <div>
+        <Route path="/" component={Header}/>
+        {/*<Route exact path="/" component={() => SearchScreen(data)} />*/}
+        <Route exact path="/" component={() => <SearchScreen userData={data} />} />
+        <Route exact path="/user/:id" render={(props) => <UserScreen {...props} getUserById={getUserById} />} />
+        <Route exact path="/user/:userId/post/:postId" render={(props) => <PostScreen {...props} />} />
+      </div>
+    </BrowserRouter>
+  );
 }
-
-export default App;
