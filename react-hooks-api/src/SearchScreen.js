@@ -10,6 +10,7 @@ export default function SearchScreen(props) {
 
 
   function sortByColumn(column) {
+    console.log("userdata",userData);
     if(latestSorted === column) {
         setLatestSorted(undefined)
         setUserData(userData.sort((a,b) => {

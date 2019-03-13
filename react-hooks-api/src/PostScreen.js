@@ -25,16 +25,18 @@ export default function PostScreen(props) {
        <p>{comment.name}</p>
        <p>{comment.text}</p>
        <p>{comment.createdAt}</p>
+       <hr />
      </div>
    ))
    return (
     <div>
-       <h1>{state.data.title}</h1>
-       <h1>{state.data.createdAt}</h1>
-       <h1>{state.data.text}</h1>
-       <h1>{state.data.likes}</h1>
-       <h1>Kommentarer</h1>
-       {comments}
+    <h1>Enskild post</h1>
+      <p>Skapad: {state.data.createdAt}</p>
+      <p>Antal likes: {state.data.likes}</p>
+      <h2>Titel: {state.data.title}</h2>
+      <h3>{state.data.text}</h3>
+      <h1>Kommentarer</h1>
+      {comments}
     </div>
    )
  }
