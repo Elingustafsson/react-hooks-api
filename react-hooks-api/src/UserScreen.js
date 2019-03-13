@@ -15,26 +15,24 @@ export default function UserScreen(props) {
   function sortByColumn(column) {
     if(latestSorted === column) {
         setLatestSorted(undefined)
-        let tmp = userInfo
-        tmp.posts = tmp.posts.sort((a,b) => {
+        userInfo.posts.sort((a,b) => {
           if (a[column] < b[column]) {
             return 1;
           } else {
             return -1;
           }
         })
-        setUserInfo(tmp)
+        setUserInfo(userInfo)
     } else {
         setLatestSorted(column)
-        let tmp = userInfo
-        tmp.posts = tmp.posts.sort((a,b) => {
+        userInfo.posts.sort((a,b) => {
           if (a[column] > b[column]) {
             return 1;
           } else {
             return -1;
           }
         })
-        setUserInfo(tmp)
+        setUserInfo(userInfo)
     }
   }
 
