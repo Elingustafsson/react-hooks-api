@@ -4,13 +4,11 @@ import { Link } from "react-browser-router";
 
 
 export default function SearchScreen(props) {
-  console.log(props)
   const [userData, setUserData] = useState(props.userData)
   const [latestSorted, setLatestSorted] = useState(undefined)
 
 
   function sortByColumn(column) {
-    console.log("userdata",userData);
     if(latestSorted === column) {
         setLatestSorted(undefined)
         setUserData(userData.sort((a,b) => {
@@ -47,13 +45,14 @@ export default function SearchScreen(props) {
 
     return (
       <div>
+        <h3>Click on each heading to sort after name, city, country</h3>
         <table>
           <thead>
             <tr>
-              <th>id</th>
-              <th onClick={() => sortByColumn("name")}>name</th>
-              <th onClick={() => sortByColumn("city")}>city</th>
-              <th onClick={() => sortByColumn("country")}>country</th>
+              <th>Id</th>
+              <th onClick={() => sortByColumn("name")}>Name</th>
+              <th onClick={() => sortByColumn("city")}>City</th>
+              <th onClick={() => sortByColumn("country")}>Country</th>
             </tr>
           </thead>
           <tbody>

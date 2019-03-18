@@ -9,13 +9,17 @@ import {
     Route
 } from "react-browser-router";
 
+const mainBody = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%'
+}
+
 
 export default function App() {
   const [data, setData] = useState([])
-  //Om man vill ha fler saker i "state"
-  // const [dataState, dataStateFunc] = useState({
-  //   data: []
-  // })
+
   useEffect(() => {
     document.body.classList.add('loading')
     fetch('http://5c63e54bc969210014a32d76.mockapi.io/api/v1/users')
@@ -33,13 +37,14 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <>
         <Route path="/" component={Header}/>
-        {/*<Route exact path="/" component={() => SearchScreen(data)} />*/}
-        <Route exact path="/" component={() => <SearchScreen userData={data} />} />
-        <Route exact path="/user/:id" render={(props) => <UserScreen {...props} getUserById={getUserById} />} />
-        <Route exact path="/user/:userId/post/:postId" render={(props) => <PostScreen {...props} />} />
-      </div>
+        <div style={mainBody}>
+          <Route exact path="/" component={() => <SearchScreen userData={data} />} />
+          <Route exact path="/user/:id" render={(props) => <UserScreen {...props} getUserById={getUserById} />} />
+          <Route exact path="/user/:userId/post/:postId" render={(props) => <PostScreen {...props} />} />
+        </div>
+      </>
     </BrowserRouter>
   );
 }

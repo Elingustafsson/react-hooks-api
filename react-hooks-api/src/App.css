@@ -5,32 +5,50 @@
   display:flex;
   align-items: center;
   justify-content: center;
-  background: gray;
+  background: purple;
   margin-bottom: 1em;
 }
 
 table, td, th {
-  border: solid black 2px;
+  border: solid grey 2px;
+  border-radius: 2px;
+}
+
+td {
+  padding: 8px;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
 }
 
 .modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 )
-                url('./ajax-loader.gif')
-                50% 50%
-                no-repeat;
+  display:    none;
+  position:   fixed;
+  z-index:    1000;
+  top:        0;
+  left:       0;
+  height:     100%;
+  width:      100%;
+  background: rgba( 255, 255, 255, .8 )
+              url('./ajax-loader.gif')
+              50% 50%
+              no-repeat;
 }
 
 body.loading .modal {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 body.loading .modal {
-    display: block;
+  display: block;
 }

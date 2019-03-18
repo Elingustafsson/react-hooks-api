@@ -23,28 +23,27 @@ export default function PostScreen(props) {
   }, [])
 
 
-
   function mapComments() {
    if(state === undefined) {
      return null;
    }
    const comments = state.comments.map(comment => (
      <div key={comment.id}>
-       <p>{comment.name}</p>
+       <p>Date: {comment.createdAt.slice(0,10)}</p>
+       <p>Author: {comment.name}</p>
        <p>{comment.text}</p>
-       <p>{comment.createdAt}</p>
        <hr />
      </div>
    ))
    return (
     <div>
-      <h1>Enskild post</h1>
-        <p>Skapad: {state.createdAt}</p>
-        <p>Antal likes: {state.likes}</p>
-        <h2>Titel: {state.title}</h2>
-        <h3>{state.text}</h3>
-        <h1>Kommentarer</h1>
-        {comments}
+      <p>Skapad: {state.createdAt.slice(0,10)}</p>
+      <p>Antal likes: {state.likes}</p>
+      <h1>{state.title}</h1>
+      <h3>{state.text}</h3>
+      <hr />
+      <h2>Kommentarer</h2>
+      {comments}
     </div>
    )
  }

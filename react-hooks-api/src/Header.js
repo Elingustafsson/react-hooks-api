@@ -5,7 +5,7 @@ import './App.css';
 export default function Header() {
   return (
     <div className="header">
-      <h1>Message API</h1>
+      <h1>React hooks</h1>
     </div>
   )
 }
